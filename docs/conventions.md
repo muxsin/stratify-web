@@ -59,6 +59,59 @@ Same pattern as `ROUTE_PATHS` for routes. When adding a new storage key, add it 
 
 ---
 
+## Commit Messages
+
+Commits are validated by **husky** + **commitlint** (`@commitlint/config-conventional`). Every commit message must follow:
+
+```
+type: short description
+```
+
+The description is lowercase, no period at the end, max 100 characters in total.
+
+### Allowed types
+
+| Type       | When to use                                      |
+| ---------- | ------------------------------------------------ |
+| `feat`     | A new feature                                    |
+| `fix`      | A bug fix                                        |
+| `docs`     | Documentation changes only                       |
+| `style`    | Formatting, whitespace — no logic change         |
+| `refactor` | Code restructure with no feature or bug change   |
+| `perf`     | Performance improvement                          |
+| `test`     | Adding or fixing tests                           |
+| `build`    | Build system or dependency changes               |
+| `ci`       | CI/CD configuration changes                      |
+| `chore`    | Maintenance tasks (version bumps, configs, etc.) |
+| `revert`   | Reverts a previous commit                        |
+
+### Examples
+
+```
+feat: add SWOT interactive tool
+fix: correct dark mode token on card border
+docs: update shadcn install instructions in styling.md
+refactor: extract framework list into shared constant
+chore: upgrade nuxt to 4.5.0
+```
+
+### Setup (first-time after git init)
+
+Husky hooks are installed automatically when you run `npm install` inside a git repository (via the `prepare` script). If the repo was just initialised:
+
+```sh
+git init
+npm install   # triggers `prepare: husky` which registers the hooks
+```
+
+If you already ran `npm install` before `git init`, re-run:
+
+```sh
+npx husky
+```
+
+---
+
 ## What Goes Where
 
 | Need to add...                      | Goes in...                                    |

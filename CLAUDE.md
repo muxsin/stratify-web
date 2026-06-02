@@ -49,7 +49,9 @@ All localStorage keys, cookie names, and sessionStorage keys must be constants i
 
 ## Conventions
 
-Naming rules, SFC block order, and "what goes where" reference: @docs/conventions.md
+Naming rules, SFC block order, commit message format, and "what goes where" reference: @docs/conventions.md
+
+Commit message format enforced by husky + commitlint: `type: description` (e.g. `feat: add SWOT tool`). Valid types: `feat fix docs style refactor perf test build ci chore revert`.
 
 SFC block order in every `.vue` file: **`<template>` → `<script>` → `<style>`**. The only exception is `src/shared/components/ui/**` (shadcn-vue CLI output — leave its layout as-is).
 

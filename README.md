@@ -58,7 +58,8 @@ src/
 ## Getting started
 
 ```sh
-npm install        # also runs `nuxt prepare`
+git init           # required before npm install (husky needs a git repo)
+npm install        # installs deps, runs `nuxt prepare` and registers husky hooks
 npm run dev        # start dev server on http://localhost:3000
 npm run build      # build for production
 npm run preview    # preview the production build
@@ -74,6 +75,20 @@ npm run format:check   # prettier --check
 ```
 
 > No test framework is configured.
+
+### Commit messages
+
+Commits are enforced by **husky** + **commitlint**. The format is `type: description`:
+
+```
+feat: add SWOT interactive tool
+fix: correct dark mode token on card border
+docs: update styling guide
+refactor: extract framework list into constant
+chore: upgrade nuxt to 4.5.0
+```
+
+Full type list and examples: [`docs/conventions.md`](./docs/conventions.md#commit-messages)
 
 ## Conventions in a sentence
 

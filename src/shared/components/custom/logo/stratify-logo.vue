@@ -5,7 +5,11 @@
     :data-size="size ?? 'md'"
     aria-label="Stratify"
   >
-    <span class="logo__mark" aria-hidden="true">▲</span>
+    <svg class="logo__mark" viewBox="0 0 48 48" aria-hidden="true">
+      <rect x="20" y="8" width="20" height="8.5" rx="4.25" fill="currentColor" />
+      <rect x="8" y="19.75" width="32" height="8.5" rx="4.25" fill="var(--accent)" />
+      <rect x="8" y="31.5" width="20" height="8.5" rx="4.25" fill="currentColor" />
+    </svg>
     <span class="logo__word">Stratify</span>
   </NuxtLink>
 </template>
@@ -30,8 +34,10 @@ defineProps<{
   color: var(--text-primary);
 
   &__mark {
-    color: var(--accent);
-    transform: translateY(1px);
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+    color: var(--text-primary);
   }
 
   &[data-size="sm"] {

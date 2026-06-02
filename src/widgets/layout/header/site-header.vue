@@ -4,16 +4,18 @@
       <StratifyLogo size="md" />
 
       <nav class="site-header__nav" aria-label="Primary">
-        <a href="#frameworks">Frameworks</a>
-        <a href="#about">About</a>
+        <NuxtLink :href="ROUTE_PATHS.home.path">{{ ROUTE_PATHS.home.name }}</NuxtLink>
+        <NuxtLink :href="ROUTE_PATHS.swot.path">{{ ROUTE_PATHS.swot.name }}</NuxtLink>
       </nav>
 
-      <div class="site-header__actions">
-        <ThemeToggle />
-      </div>
+      <div class="site-header__actions">#@</div>
     </div>
   </header>
 </template>
+
+<script setup lang="ts">
+import { ROUTE_PATHS } from "~/shared/constants/route-paths";
+</script>
 
 <style lang="scss" scoped>
 @use "~/shared/styles/abstracts/variables" as *;

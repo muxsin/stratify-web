@@ -2,6 +2,7 @@
   <footer class="site-footer">
     <div class="container site-footer__inner">
       <StratifyLogo size="sm" />
+      <a target="blank" href="https://t.me/muxsinjohn">developer</a>
       <p class="site-footer__copy">© {{ year }} Stratify. Turn complexity into clarity.</p>
     </div>
   </footer>
@@ -26,7 +27,7 @@ const year = new Date().getFullYear();
     align-items: center;
     justify-content: space-between;
     gap: $space-3;
-    padding-block: $space-8;
+    padding-block: $space-4;
     text-align: center;
 
     @include respond-to(md) {

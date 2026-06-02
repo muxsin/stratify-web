@@ -1,7 +1,6 @@
 <template>
   <div class="home-view">
     <LandingHero />
-    <FrameworksGrid />
   </div>
 </template>
 

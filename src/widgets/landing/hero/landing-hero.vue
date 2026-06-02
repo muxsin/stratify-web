@@ -1,25 +1,26 @@
 <template>
-  <section class="hero">
-    <div class="container hero__inner">
-      <span class="hero__eyebrow">Strategy toolkit</span>
-
+  <section class="container min-h-screen flex items-center justify-center">
+    <div class="hero__inner">
       <h1 class="hero__title">
-        Turn business complexity into <span class="hero__title-accent">clarity</span>.
+        Turn complexity into <span class="hero__title-accent">clarity</span>.
       </h1>
 
       <p class="hero__lede">
-        Learn the frameworks that shape strategy — SWOT, PESTLE, Porter's Five Forces, BCG Matrix,
-        Ansoff Matrix and more. Then use them. Interactive tools, real-world examples and a clean
-        place to think.
+        Stratify makes a SWOT analysis something you actually finish. Learn what each quadrant
+        means, fill in your own in quick chips, and export a clean result - all in one calm place to
+        think.
       </p>
 
-      <div class="hero__cta">
-        <Button as="a" href="#frameworks" size="lg">Explore frameworks</Button>
-        <Button as="a" href="#about" size="lg" variant="outline">What is Stratify?</Button>
-      </div>
+      <NuxtLink :href="ROUTE_PATHS.swot.path">
+        <Button size="lg">Start SWOT analysis</Button>
+      </NuxtLink>
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import { ROUTE_PATHS } from "~/shared/constants/route-paths";
+</script>
 
 <style lang="scss" scoped>
 @use "~/shared/styles/abstracts/variables" as *;
@@ -37,22 +38,10 @@
   &__inner {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
     gap: $space-6;
-    max-width: 56rem;
-  }
-
-  &__eyebrow {
-    display: inline-block;
-    padding: $space-1 $space-3;
-    border: 1px solid var(--border-strong);
-    border-radius: $radius-full;
-    font-size: $text-xs;
-    font-weight: $font-medium;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    background-color: var(--bg-surface);
+    text-align: center;
   }
 
   &__title {
@@ -61,6 +50,7 @@
     font-weight: $font-bold;
     letter-spacing: -0.025em;
     color: var(--text-primary);
+    text-align: center;
   }
 
   &__title-accent {
@@ -72,13 +62,6 @@
     line-height: $leading-relaxed;
     color: var(--text-secondary);
     max-width: 42rem;
-  }
-
-  &__cta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $space-3;
-    margin-top: $space-2;
   }
 }
 </style>

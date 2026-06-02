@@ -61,6 +61,15 @@ Same pattern as `ROUTE_PATHS` for routes. When adding a new storage key, add it 
 
 ## Commit Messages
 
+Two git hooks run on every `git commit`, in order:
+
+1. **`pre-commit`** — runs `npm run lint` (ESLint). If there are any errors the commit is rejected before the message is even checked.
+2. **`commit-msg`** — runs commitlint. If the message doesn't match the required format the commit is rejected.
+
+Both must pass for the commit to go through.
+
+### Message format
+
 Commits are validated by **husky** + **commitlint** (`@commitlint/config-conventional`). Every commit message must follow:
 
 ```

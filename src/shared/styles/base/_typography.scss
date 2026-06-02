@@ -1,0 +1,79 @@
+@use "../abstracts/variables" as *;
+
+:root {
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial,
+    sans-serif;
+  --font-mono:
+    "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  --font-heading: var(--font-sans);
+}
+
+html {
+  font-family: var(--font-sans);
+  font-size: $text-base;
+  line-height: $leading-normal;
+  color: var(--text-primary);
+  font-feature-settings: "cv11", "ss01", "ss03";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: $text-4xl;
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+  letter-spacing: -0.02em;
+}
+h2 {
+  font-size: $text-3xl;
+  font-weight: $font-bold;
+  line-height: $leading-tight;
+}
+h3 {
+  font-size: $text-2xl;
+  font-weight: $font-semibold;
+  line-height: $leading-snug;
+}
+h4 {
+  font-size: $text-xl;
+  font-weight: $font-semibold;
+  line-height: $leading-snug;
+}
+h5 {
+  font-size: $text-lg;
+  font-weight: $font-medium;
+  line-height: $leading-normal;
+}
+h6 {
+  font-size: $text-base;
+  font-weight: $font-medium;
+  line-height: $leading-normal;
+}
+
+p {
+  font-size: $text-base;
+  line-height: $leading-relaxed;
+  color: var(--text-secondary);
+}
+
+small {
+  font-size: $text-sm;
+  color: var(--text-muted);
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--font-mono);
+  font-size: $text-sm;
+}

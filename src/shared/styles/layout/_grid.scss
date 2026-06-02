@@ -1,0 +1,66 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/breakpoints" as *;
+@use "../abstracts/mixins" as *;
+
+.container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: $space-4;
+
+  @include respond-to(sm) {
+    max-width: $bp-sm;
+    padding-inline: $space-6;
+  }
+  @include respond-to(md) {
+    max-width: $bp-md;
+  }
+  @include respond-to(lg) {
+    max-width: $bp-lg;
+    padding-inline: $space-8;
+  }
+  @include respond-to(xl) {
+    max-width: $bp-xl;
+  }
+  @include respond-to(2xl) {
+    max-width: $bp-2xl;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: $space-4;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@include respond-to(md) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@include respond-to(lg) {
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

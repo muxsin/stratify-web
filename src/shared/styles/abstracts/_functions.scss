@@ -1,0 +1,14 @@
+@use "sass:math";
+
+// Convert px to rem (assumes 16px base)
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+// Fluid type/spacing: clamps between $min and $max across viewport widths
+// Usage: font-size: fluid(1rem, 2rem);
+@function fluid($min, $max, $min-vw: 375px, $max-vw: 1280px) {
+  $slope: math.div($max - $min, $max-vw - $min-vw);
+  $intercept: $min - ($slope * $min-vw);
+  @return clamp(#{$min}, calc(#{$slope * 100vw} + #{$intercept}), #{$max});
+}

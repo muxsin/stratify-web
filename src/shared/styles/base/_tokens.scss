@@ -1,0 +1,123 @@
+// Stratify design tokens.
+// Single source of truth for both the SCSS pipeline and shadcn-vue / Tailwind.
+// Dark mode is toggled by setting [data-theme="dark"] on <html> via useTheme().
+
+:root {
+  // ---------- Stratify palette ----------
+
+  // Brand
+  --primary: #0d1f4e;
+  --primary-light: #1e3a8a;
+
+  // Accent
+  --accent: #3b6fd4;
+  --accent-hover: #6b97e8;
+  --accent-soft: #93b4f0;
+  --accent-muted: #ddeafc;
+
+  // Backgrounds
+  --bg-base: #faf7f2;
+  --bg-surface: #f3efe8;
+  --bg-elevated: #ede7dc;
+
+  // Borders
+  --border: #e8e2d9;
+  --border-strong: #d8d0c4;
+
+  // Text
+  --text-primary: #0d1f4e;
+  --text-secondary: #2d3e5f;
+  --text-muted: #4a5568;
+  --text-hint: #8898aa;
+
+  // Status
+  --success: #16a34a;
+  --success-soft: #dcfce7;
+  --danger: #dc2626;
+  --danger-soft: #fee2e2;
+  --warning: #d97706;
+  --warning-soft: #fef3c7;
+
+  // ---------- shadcn-vue aliases (mapped to Stratify palette) ----------
+  --radius: 0.625rem;
+
+  --background: var(--bg-base);
+  --foreground: var(--text-primary);
+
+  --card: var(--bg-surface);
+  --card-foreground: var(--text-primary);
+
+  --popover: var(--bg-surface);
+  --popover-foreground: var(--text-primary);
+
+  --primary-foreground: var(--bg-base);
+
+  --secondary: var(--bg-elevated);
+  --secondary-foreground: var(--text-primary);
+
+  --muted: var(--bg-elevated);
+  --muted-foreground: var(--text-muted);
+
+  --accent-foreground: #ffffff;
+
+  --destructive: var(--danger);
+
+  --input: var(--border);
+  --ring: var(--accent);
+
+  // Chart palette (kept neutral; tune when charts are introduced)
+  --chart-1: var(--accent);
+  --chart-2: var(--accent-hover);
+  --chart-3: var(--accent-soft);
+  --chart-4: var(--primary-light);
+  --chart-5: var(--success);
+
+  // Sidebar tokens
+  --sidebar: var(--bg-surface);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--bg-base);
+  --sidebar-accent: var(--accent-muted);
+  --sidebar-accent-foreground: var(--primary);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--accent);
+}
+
+[data-theme="dark"] {
+  // Brand
+  --primary: #93b4f0;
+  --primary-light: #6b97e8;
+
+  // Accent
+  --accent: #4a7fe0;
+  --accent-hover: #3b6fd4;
+  --accent-soft: #1e3a8a;
+  --accent-muted: #122660;
+
+  // Backgrounds
+  --bg-base: #0e1525;
+  --bg-surface: #121d33;
+  --bg-elevated: #182540;
+
+  // Borders
+  --border: #1f2f50;
+  --border-strong: #2a3f68;
+
+  // Text
+  --text-primary: #edf2ff;
+  --text-secondary: #bdd0f5;
+  --text-muted: #8898bb;
+  --text-hint: #4a5e80;
+
+  // Status
+  --success: #22c55e;
+  --success-soft: #052e16;
+  --danger: #ef4444;
+  --danger-soft: #450a0a;
+  --warning: #f59e0b;
+  --warning-soft: #3d1f00;
+
+  // shadcn alias overrides for dark
+  --primary-foreground: #0e1525;
+  --accent-foreground: #0e1525;
+}

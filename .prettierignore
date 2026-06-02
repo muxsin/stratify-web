@@ -1,0 +1,9 @@
+.nuxt
+.output
+.nitro
+.data
+node_modules
+dist
+public
+*.min.*
+package-lock.json

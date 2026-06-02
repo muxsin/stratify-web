@@ -1,0 +1,29 @@
+# Nuxt dev/build outputs
+.output
+.nuxt
+.nitro
+.cache
+.data
+dist
+
+# Node dependencies
+node_modules
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.DS_Store
+.idea
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local Claude settings
+.claude/settings.local.json

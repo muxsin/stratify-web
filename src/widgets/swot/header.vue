@@ -3,7 +3,9 @@
     <Input v-model="swotName" class="md:max-w-[50%]" placeholder="Name your swot analysis..." />
 
     <div class="flex items-center gap-3">
-      <Button variant="ghost"> <FolderDown class="size-4" /> Import</Button>
+      <Button variant="ghost" @click="setUploadFileModalOpen">
+        <FolderDown class="size-4" /> Import</Button
+      >
 
       <DropdownMenu>
         <DropdownMenuTrigger>
@@ -30,7 +32,7 @@ import {
 } from "~/shared/components/ui/dropdown-menu";
 import { useQueryParams } from "~/shared/hooks/use-query-params";
 
-defineProps<{ handleExportJson: () => void }>();
+defineProps<{ handleExportJson: () => void; setUploadFileModalOpen: (value: boolean) => void }>();
 
 const swotName = useQueryParams("name");
 </script>

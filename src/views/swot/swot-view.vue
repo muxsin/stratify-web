@@ -1,24 +1,41 @@
 <template>
   <div>
-    <SwotHeader :handleExportJson="handleExportJson" />
+    <SwotHeader
+      :handleExportJson="handleExportJson"
+      :setUploadFileModalOpen="setUploadFileModalOpen"
+    />
     <SwotCards :cards="cards" />
+
+    <UploadFileModal
+      :open="isUploadFileModalOpen"
+      :setOpen="setUploadFileModalOpen"
+      :handleSubmit="handleImportJson"
+      :uploadFileError="uploadFileError"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, computed } from "vue";
+import { reactive, computed, ref } from "vue";
 import { useQueryParams } from "~/shared/hooks/use-query-params";
 import type { SwotCard } from "~/shared/types/swot/swot-cards.types";
 import SwotHeader from "~/widgets/swot/header.vue";
 import SwotCards from "~/widgets/swot/swot-cards.vue";
+import UploadFileModal from "~/widgets/swot/upload-file-modal.vue";
 
-const cards = reactive<SwotCard[]>([
+const isUploadFileModalOpen = ref(false);
+const setUploadFileModalOpen = (value: boolean) => {
+  isUploadFileModalOpen.value = value;
+};
+const uploadFileError = ref();
+
+let cards = reactive<SwotCard[]>([
   {
     key: "S",
     name: "Strengths",
     description: "Internal positives",
     tooltip:
-      "Strengths are internal factors that give your organization a competitive advantage — areas where you excel and consistently outperform competitors.",
+      "Strengths are internal factors that give your organization a competitive advantage - areas where you excel and consistently outperform competitors.",
     items: [],
     input: "",
   },
@@ -27,7 +44,7 @@ const cards = reactive<SwotCard[]>([
     name: "Weaknesses",
     description: "Internal negatives",
     tooltip:
-      "Weaknesses are internal factors that put your organization at a disadvantage — areas where you fall short and need improvement to remain competitive.",
+      "Weaknesses are internal factors that put your organization at a disadvantage - areas where you fall short and need improvement to remain competitive.",
     items: [],
     input: "",
   },
@@ -36,7 +53,7 @@ const cards = reactive<SwotCard[]>([
     name: "Opportunities",
     description: "External positives",
     tooltip:
-      "Opportunities are external factors your organization can exploit to its advantage — favorable trends, market gaps, or conditions you can capitalize on.",
+      "Opportunities are external factors your organization can exploit to its advantage - favorable trends, market gaps, or conditions you can capitalize on.",
     items: [],
     input: "",
   },
@@ -45,7 +62,7 @@ const cards = reactive<SwotCard[]>([
     name: "Threats",
     description: "External negatives",
     tooltip:
-      "Threats are external factors that could harm your organization — competitors, regulations, economic shifts, or other environmental challenges to watch.",
+      "Threats are external factors that could harm your organization - competitors, regulations, economic shifts, or other environmental challenges to watch.",
     items: [],
     input: "",
   },
@@ -66,5 +83,10 @@ function handleExportJson() {
   link.click();
   document.body.removeChild(link);
   URL.revokeObjectURL(link.href);
+}
+
+function handleImportJson(jsonFileContent: SwotCard[]) {
+  cards = jsonFileContent;
+  setUploadFileModalOpen(false);
 }
 </script>

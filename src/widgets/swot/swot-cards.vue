@@ -1,6 +1,6 @@
 <template>
   <TooltipProvider>
-    <section class="swot-grid max-w-[1800px] mx-auto w-full p-3">
+    <section class="swot-grid max-w-450 mx-auto w-full p-3">
       <div v-for="card in cards" :key="card.key" class="swot-card" :data-quadrant="card.key">
         <div class="swot-card__header">
           <div class="swot-card__title-row">
@@ -44,14 +44,14 @@
         <div v-if="card.items.length" class="swot-card__items">
           <div v-for="(item, i) in card.items" :key="i" class="swot-card__item">
             <span>{{ item }}</span>
-            <button
-              type="button"
-              class="swot-card__remove-btn"
+            <Button
+              size="icon-xs"
+              variant="ghost"
               :aria-label="`Remove ${item}`"
               @click="removeItem(card, i)"
             >
-              <X :size="12" />
-            </button>
+              <X class="size-3" />
+            </Button>
           </div>
         </div>
 
@@ -63,15 +63,16 @@
               class="swot-card__input"
               @keydown.enter="submitItem(card)"
             />
-            <button
+            <Button
               v-if="card.input.trim()"
-              type="button"
               class="swot-card__send-btn"
               aria-label="Add item"
+              size="icon-xs"
+              variant="ghost"
               @click="submitItem(card)"
             >
-              <SendHorizontal :size="15" />
-            </button>
+              <SendHorizontal class="size-5 -rotate-45" />
+            </Button>
           </div>
         </div>
       </div>
@@ -89,6 +90,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "~/shared/components/ui/tooltip";
+import Button from "~/shared/components/ui/button/button.vue";
 
 interface SwotCard {
   key: "S" | "W" | "O" | "T";
@@ -170,10 +172,12 @@ function clearItems(card: SwotCard) {
   display: flex;
   flex-direction: column;
   gap: 0.875rem;
-  padding: 1.5rem;
+  padding: 0 1.5rem;
   border: 1px solid var(--border);
   border-left-width: 4px;
   min-height: 320px;
+  max-height: 550px;
+  overflow-y: auto;
 
   // Avoid double borders in the grid
   &:nth-child(1),
@@ -250,6 +254,12 @@ function clearItems(card: SwotCard) {
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-base);
+    padding: 0.5rem 0;
   }
 
   &__title-row {
@@ -402,8 +412,13 @@ function clearItems(card: SwotCard) {
   // Footer input area
   &__footer {
     margin-top: auto;
-    padding-top: 0.5rem;
+    padding: 0.5rem 0;
     border-top: 1px solid var(--border);
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-base);
   }
 
   &__input-wrapper {

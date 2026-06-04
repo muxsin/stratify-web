@@ -15,15 +15,16 @@
             <span class="swot-card__count" :aria-label="`${card.items.length} items`">
               {{ card.items.length }}
             </span>
-            <button
+            <Button
               v-if="card.items.length"
               type="button"
-              class="swot-card__clear-btn"
+              variant="ghost"
+              size="sm"
               aria-label="Clear all items"
               @click="clearItems(card)"
             >
               Clear all
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -31,9 +32,14 @@
           <span class="swot-card__desc">{{ card.description }}</span>
           <Tooltip>
             <TooltipTrigger as-child>
-              <button type="button" class="swot-card__info-btn" aria-label="More information">
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon-xs"
+                aria-label="More information"
+              >
                 <Info :size="14" />
-              </button>
+              </Button>
             </TooltipTrigger>
             <TooltipContent side="right" class="swot-card__tooltip">
               {{ card.tooltip }}
@@ -259,28 +265,6 @@ function clearItems(card: SwotCard) {
     color: var(--text-hint);
   }
 
-  &__clear-btn {
-    padding: 0.125rem 0.5rem;
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: var(--text-hint);
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 0.375rem;
-    cursor: pointer;
-    letter-spacing: 0.02em;
-    transition:
-      color 0.15s ease,
-      border-color 0.15s ease,
-      background-color 0.15s ease;
-
-    &:hover {
-      color: var(--danger);
-      border-color: var(--danger);
-      background-color: var(--danger-soft);
-    }
-  }
-
   // Description + info icon
   &__desc-row {
     display: flex;
@@ -292,23 +276,6 @@ function clearItems(card: SwotCard) {
     font-size: 0.8125rem;
     color: var(--text-muted);
     line-height: 1.4;
-  }
-
-  &__info-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--text-hint);
-    flex-shrink: 0;
-    transition: color 0.15s ease;
-
-    &:hover {
-      color: var(--text-muted);
-    }
   }
 
   // Items list
@@ -339,27 +306,6 @@ function clearItems(card: SwotCard) {
 
     &:hover {
       background-color: var(--bg-surface);
-    }
-  }
-
-  &__remove-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    padding: 0.125rem;
-    color: var(--text-hint);
-    background: none;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    transition:
-      color 0.15s ease,
-      background-color 0.15s ease;
-
-    &:hover {
-      color: var(--danger);
-      background-color: var(--danger-soft);
     }
   }
 

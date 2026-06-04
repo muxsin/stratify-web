@@ -29,7 +29,7 @@ const setUploadFileModalOpen = (value: boolean) => {
 };
 const uploadFileError = ref();
 
-let cards = reactive<SwotCard[]>([
+const cards = reactive<SwotCard[]>([
   {
     key: "S",
     name: "Strengths",
@@ -86,7 +86,7 @@ function handleExportJson() {
 }
 
 function handleImportJson(jsonFileContent: SwotCard[]) {
-  cards = jsonFileContent;
+  cards.splice(0, cards.length, ...jsonFileContent);
   setUploadFileModalOpen(false);
 }
 </script>

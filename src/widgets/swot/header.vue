@@ -11,7 +11,7 @@
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>as image</DropdownMenuItem>
-          <DropdownMenuItem>as JSON</DropdownMenuItem>
+          <DropdownMenuItem @click="handleExportJson">as JSON</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
@@ -28,4 +28,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "~/shared/components/ui/dropdown-menu";
+
+defineProps<{ handleExportJson: () => void }>();
 </script>

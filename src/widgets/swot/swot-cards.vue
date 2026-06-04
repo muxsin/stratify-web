@@ -81,7 +81,6 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
 import { Info, SendHorizontal, X } from "@lucide/vue";
 import { Input } from "~/shared/components/ui/input";
 import {
@@ -91,54 +90,9 @@ import {
   TooltipTrigger,
 } from "~/shared/components/ui/tooltip";
 import Button from "~/shared/components/ui/button/button.vue";
+import type { SwotCard } from "~/shared/types/swot/swot-cards.types";
 
-interface SwotCard {
-  key: "S" | "W" | "O" | "T";
-  name: string;
-  description: string;
-  tooltip: string;
-  items: string[];
-  input: string;
-}
-
-const cards = reactive<SwotCard[]>([
-  {
-    key: "S",
-    name: "Strengths",
-    description: "Internal positives",
-    tooltip:
-      "Strengths are internal factors that give your organization a competitive advantage — areas where you excel and consistently outperform competitors.",
-    items: [],
-    input: "",
-  },
-  {
-    key: "W",
-    name: "Weaknesses",
-    description: "Internal negatives",
-    tooltip:
-      "Weaknesses are internal factors that put your organization at a disadvantage — areas where you fall short and need improvement to remain competitive.",
-    items: [],
-    input: "",
-  },
-  {
-    key: "O",
-    name: "Opportunities",
-    description: "External positives",
-    tooltip:
-      "Opportunities are external factors your organization can exploit to its advantage — favorable trends, market gaps, or conditions you can capitalize on.",
-    items: [],
-    input: "",
-  },
-  {
-    key: "T",
-    name: "Threats",
-    description: "External negatives",
-    tooltip:
-      "Threats are external factors that could harm your organization — competitors, regulations, economic shifts, or other environmental challenges to watch.",
-    items: [],
-    input: "",
-  },
-]);
+defineProps<{ cards: SwotCard[] }>();
 
 function submitItem(card: SwotCard) {
   const trimmed = card.input.trim();

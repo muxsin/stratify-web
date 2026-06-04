@@ -1,6 +1,6 @@
 <template>
   <section class="container py-5 flex items-center justify-between gap-5 flex-wrap md:flex-nowrap">
-    <Input class="md:max-w-[50%]" placeholder="Name your swot analysis..." />
+    <Input v-model="swotName" class="md:max-w-[50%]" placeholder="Name your swot analysis..." />
 
     <div class="flex items-center gap-3">
       <Button variant="ghost"> <FolderDown class="size-4" /> Import</Button>
@@ -28,6 +28,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "~/shared/components/ui/dropdown-menu";
+import { useQueryParams } from "~/shared/hooks/use-query-params";
 
 defineProps<{ handleExportJson: () => void }>();
+
+const swotName = useQueryParams("name");
 </script>

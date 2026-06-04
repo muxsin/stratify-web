@@ -6,7 +6,8 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
+import { useQueryParams } from "~/shared/hooks/use-query-params";
 import type { SwotCard } from "~/shared/types/swot/swot-cards.types";
 import SwotHeader from "~/widgets/swot/header.vue";
 import SwotCards from "~/widgets/swot/swot-cards.vue";
@@ -50,13 +51,16 @@ const cards = reactive<SwotCard[]>([
   },
 ]);
 
+const swotFileName = useQueryParams("name");
+const formattedFileName = computed(() => swotFileName.value.split(" ").join("-"));
+
 function handleExportJson() {
   const carsAsString = JSON.stringify(cards, null, 2);
   const blob = new Blob([carsAsString], { type: "application/json" });
 
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
-  link.download = "swot-analysis.json";
+  link.download = `${formattedFileName.value || "swot-analysis"}.json`;
 
   document.body.appendChild(link);
   link.click();

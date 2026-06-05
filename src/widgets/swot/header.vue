@@ -24,7 +24,7 @@
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <Button variant="outline" @click="setUserAnalysisModalOpen(true)">
+      <Button variant="outline" @click="setUserSwotAnalysisModalOpen(true)">
         <ListCollapse class="size-4" /> Exists
       </Button>
     </div>
@@ -47,7 +47,7 @@ import { ROUTE_PATHS } from "~/shared/constants/route-paths";
 defineProps<{
   handleExportJson: () => void;
   setUploadFileModalOpen: (value: boolean) => void;
-  setUserAnalysisModalOpen: (value: boolean) => void;
+  setUserSwotAnalysisModalOpen: (value: boolean) => void;
 }>();
 
 const swotName = useQueryParams("name");

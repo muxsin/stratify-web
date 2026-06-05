@@ -3,7 +3,7 @@
     <SwotHeader
       :handleExportJson="handleExportJson"
       :setUploadFileModalOpen="setUploadFileModalOpen"
-      :setUserAnalysisModalOpen="setUserAnalysisModalOpen"
+      :setUserSwotAnalysisModalOpen="setUserSwotAnalysisModalOpen"
     />
     <SwotCards :cards="cards" />
 
@@ -14,9 +14,9 @@
       :uploadFileError="uploadFileError"
     />
 
-    <UserAnalysisModal
-      :open="isUserAnalysisModalOpen"
-      :setOpen="setUserAnalysisModalOpen"
+    <UserSwotAnalysisModal
+      :open="isUserSwotAnalysisModalOpen"
+      :setOpen="setUserSwotAnalysisModalOpen"
       :allLocalStorageAnalysis="allLocalStorageAnalysis"
       :handleGetSwotLocalStorage="handleGetSwotLocalStorage"
     />
@@ -35,7 +35,7 @@ import {
 import SwotHeader from "~/widgets/swot/header.vue";
 import SwotCards from "~/widgets/swot/swot-cards.vue";
 import UploadFileModal from "~/widgets/swot/upload-file-modal.vue";
-import UserAnalysisModal from "~/widgets/swot/user-analysis-modal.vue";
+import UserSwotAnalysisModal from "~/widgets/swot/user-swot-analysis-modal.vue";
 
 const isUploadFileModalOpen = ref(false);
 const setUploadFileModalOpen = (value: boolean) => {
@@ -48,9 +48,9 @@ const localStorageCards = computed(() =>
   getLocalStorage(`swotAA-${formattedFileName.value || "unknown"}`),
 );
 const allLocalStorageAnalysis = getAllLocalStorageItems("swotAA");
-const isUserAnalysisModalOpen = ref(false);
-const setUserAnalysisModalOpen = (value: boolean) => {
-  isUserAnalysisModalOpen.value = value;
+const isUserSwotAnalysisModalOpen = ref(false);
+const setUserSwotAnalysisModalOpen = (value: boolean) => {
+  isUserSwotAnalysisModalOpen.value = value;
 };
 
 const cards = reactive<SwotCard[]>([
@@ -94,7 +94,7 @@ const cards = reactive<SwotCard[]>([
 
 watchEffect(() => {
   if (allLocalStorageAnalysis?.length > 0 && !formattedFileName.value) {
-    isUserAnalysisModalOpen.value = true;
+    isUserSwotAnalysisModalOpen.value = true;
   }
 });
 

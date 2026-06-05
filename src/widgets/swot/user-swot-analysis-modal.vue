@@ -5,17 +5,25 @@
     </DialogTrigger>
     <DialogContent>
       <DialogHeader>
-        <DialogTitle class="import-modal__title">Import SWOT Analysis</DialogTitle>
-        <DialogDescription class="import-modal__desc">
-          Upload a JSON file exported from Stratify to restore your SWOT analysis.
+        <DialogTitle>Saved Analyses</DialogTitle>
+        <DialogDescription>
+          Open a previously saved SWOT analysis to pick up where you left off.
         </DialogDescription>
       </DialogHeader>
 
-      <div v-for="swotAA in allLocalStorageAnalysis" :key="swotAA?.key">
-        <Button variant="outline" @click="handleApplyAnalysis(swotAA?.key)">{{
-          swotAA?.key
-        }}</Button>
+      <div v-if="allLocalStorageAnalysis?.length" class="analysis-list">
+        <Button
+          v-for="swotAA in allLocalStorageAnalysis"
+          :key="swotAA?.key"
+          variant="outline"
+          class="analysis-list__item"
+          @click="handleApplyAnalysis(swotAA?.key)"
+        >
+          {{ getAnalysisName(swotAA?.key) }}
+        </Button>
       </div>
+
+      <p v-else class="analysis-empty">You don't have any saved analyses yet.</p>
     </DialogContent>
   </Dialog>
 </template>
@@ -42,6 +50,11 @@ const props = defineProps<{
 
 const selectedAnalysis = useQueryParams("name");
 
+function getAnalysisName(swotAAKey: string) {
+  const name = swotAAKey.slice(7);
+  return name === "unknown" ? "Untitled analysis" : name.split("-").join(" ");
+}
+
 function handleApplyAnalysis(swotAAKey: string) {
   const formatedAnalysisTitle = swotAAKey.slice(7);
   selectedAnalysis.value = formatedAnalysisTitle;
@@ -49,3 +62,24 @@ function handleApplyAnalysis(swotAAKey: string) {
   props.setOpen(false);
 }
 </script>
+
+<style lang="scss" scoped>
+@use "~/shared/styles/abstracts/variables" as *;
+
+.analysis-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+
+  &__item {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+.analysis-empty {
+  padding: $space-4 0;
+  text-align: center;
+  color: var(--text-muted);
+}
+</style>

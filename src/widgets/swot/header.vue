@@ -25,7 +25,7 @@
       </DropdownMenu>
 
       <Button variant="outline" @click="setUserSwotAnalysisModalOpen(true)">
-        <ListCollapse class="size-4" /> Exists
+        <ListCollapse class="size-4" /> Saved
       </Button>
     </div>
   </section>

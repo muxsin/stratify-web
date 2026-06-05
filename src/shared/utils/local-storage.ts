@@ -18,3 +18,7 @@ export function getAllLocalStorageItems(startingKey: string) {
       };
     });
 }
+
+export function removeLocalStorageItem(key: string) {
+  return localStorage.removeItem(key);
+}

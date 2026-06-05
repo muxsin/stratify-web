@@ -11,8 +11,8 @@
 
     <div class="flex items-center gap-3">
       <Button variant="outline" @click="setUploadFileModalOpen">
-        <FolderDown class="size-4" /> Import</Button
-      >
+        <FolderDown class="size-4" /> Import
+      </Button>
 
       <DropdownMenu>
         <DropdownMenuTrigger>
@@ -23,12 +23,16 @@
           <DropdownMenuItem @click="handleExportJson">as JSON</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      <Button variant="outline" @click="setUserAnalysisModalOpen(true)">
+        <ListCollapse class="size-4" /> Exists
+      </Button>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ArrowLeft, FolderDown, FolderUp } from "@lucide/vue";
+import { ArrowLeft, FolderDown, FolderUp, ListCollapse } from "@lucide/vue";
 import Button from "~/shared/components/ui/button/button.vue";
 import Input from "~/shared/components/ui/input/Input.vue";
 import {
@@ -40,7 +44,11 @@ import {
 import { useQueryParams } from "~/shared/hooks/use-query-params";
 import { ROUTE_PATHS } from "~/shared/constants/route-paths";
 
-defineProps<{ handleExportJson: () => void; setUploadFileModalOpen: (value: boolean) => void }>();
+defineProps<{
+  handleExportJson: () => void;
+  setUploadFileModalOpen: (value: boolean) => void;
+  setUserAnalysisModalOpen: (value: boolean) => void;
+}>();
 
 const swotName = useQueryParams("name");
 </script>

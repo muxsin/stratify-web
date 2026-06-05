@@ -3,6 +3,7 @@
     <SwotHeader
       :handleExportJson="handleExportJson"
       :setUploadFileModalOpen="setUploadFileModalOpen"
+      :setUserAnalysisModalOpen="setUserAnalysisModalOpen"
     />
     <SwotCards :cards="cards" />
 
@@ -92,7 +93,7 @@ const cards = reactive<SwotCard[]>([
 ]);
 
 watchEffect(() => {
-  if (allLocalStorageAnalysis?.length > 0) {
+  if (allLocalStorageAnalysis?.length > 0 && !formattedFileName.value) {
     isUserAnalysisModalOpen.value = true;
   }
 });

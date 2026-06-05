@@ -1,21 +1,27 @@
 # Styling
 
+See also: [design-system.md](./design-system.md) — colour/type/motion reference for building UI.
+
 ## SCSS Architecture
 
 ```
 src/shared/styles/
 ├── abstracts/            # No CSS output — tools only
-│   ├── _variables.scss   # SCSS variables: spacing, font sizes, shadows
-│   ├── _mixins.scss      # flex-center, respond-to, truncate
+│   ├── _variables.scss   # SCSS variables: spacing, font sizes, radii, shadows, z-index
+│   ├── _mixins.scss      # flex-center, respond-to, truncate, line-clamp
 │   ├── _functions.scss   # rem(), fluid()
-│   └── _breakpoints.scss # $bp-sm: 640px, $bp-md: 768px, etc.
+│   ├── _breakpoints.scss # $bp-sm: 640px, $bp-md: 768px, etc.
+│   ├── _animations.scss  # motion tokens (durations, easings) + transition/enter mixins
+│   └── _index.scss       # @forwards all abstracts
 ├── base/
 │   ├── _reset.scss       # Box-sizing, margin reset
 │   ├── _typography.scss  # Font families, size scale
-│   └── _tokens.scss      # CSS custom properties (light + dark)
+│   ├── _tokens.scss      # CSS custom properties (light + dark)
+│   └── _animations.scss  # shared @keyframes, .animate-* utilities, reduced-motion guard
 ├── layout/
 │   └── _grid.scss        # Container, grid utilities
-└── main.scss             # Entry point — imports all partials
+├── tw-plugins.css        # Tailwind v4 entry + dark-variant rewire (loaded separately)
+└── main.scss             # Entry point — imports all SCSS partials
 ```
 
 `main.scss` import order:
@@ -25,13 +31,17 @@ src/shared/styles/
 @use "abstracts/functions" as *;
 @use "abstracts/mixins" as *;
 @use "abstracts/breakpoints" as *;
+@use "abstracts/animations" as *;
 
-@use "base/reset";
 @use "base/tokens";
+@use "base/reset";
 @use "base/typography";
+@use "base/animations";
 
 @use "layout/grid";
 ```
+
+> `main.scss` and `tw-plugins.css` are both registered in `nuxt.config.ts` (`css: [...]`).
 
 **SCSS abstracts are not globally injected.** Each component that needs variables or mixins must import them explicitly:
 
@@ -136,3 +146,9 @@ After install:
 ### Shadcn ↔ Stratify token bridge
 
 shadcn-vue components reference semantic tokens (`--background`, `--foreground`, `--primary`, `--card`, `--muted`, `--ring`, ...). These are defined in `_tokens.scss` and mapped to the Stratify palette so the two systems stay in sync — you only need to edit `_tokens.scss` to retheme both. Tailwind's `dark:` variant is re-wired in `tw-plugins.css` to follow `[data-theme="dark"]` instead of the default `.dark` class.
+
+---
+
+## Motion
+
+Motion tokens (`$duration-*`, `$ease-*`), the `transition-base` mixin, shared `@keyframes`, the `.animate-*` utility classes, and the global `prefers-reduced-motion` guard live in `abstracts/_animations.scss` and `base/_animations.scss`. Full guidance — when to use a CSS transition vs a Vue `<Transition>`, and how to add a new shared animation — is in [design-system.md](./design-system.md#motion).

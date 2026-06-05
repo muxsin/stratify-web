@@ -1,0 +1,42 @@
+// Motion tokens and reusable animation helpers.
+// No CSS output here — only SCSS variables and mixins.
+// The matching @keyframes and utility classes live in base/_animations.scss
+// (output once, globally). Components may either:
+//   - use these mixins inside scoped styles, or
+//   - apply the global utility classes (.animate-*) in templates.
+
+// ---------- Duration tokens ----------
+$duration-fast: 150ms; // hovers, small state changes
+$duration-base: 200ms; // default UI transitions
+$duration-slow: 300ms; // enter/leave, larger movements
+
+// ---------- Easing tokens ----------
+$ease-out: cubic-bezier(0.16, 1, 0.3, 1); // settle quickly, calm finish
+$ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); // symmetric movement
+$ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); // gentle overshoot
+
+// ---------- Mixins ----------
+
+// Smooth transition on the given properties with sensible defaults.
+// Usage: @include transition-base(color, background-color);
+@mixin transition-base($props...) {
+  $list: ();
+  @each $prop in $props {
+    $list: append($list, #{$prop} $duration-base $ease-out, comma);
+  }
+  transition: $list;
+}
+
+// Minimalist enter animations. They reference the global keyframes
+// declared in base/_animations.scss, so no duplicate CSS is emitted.
+@mixin fade-in($duration: $duration-slow) {
+  animation: fade-in $duration $ease-out both;
+}
+
+@mixin fade-up($duration: $duration-slow) {
+  animation: fade-up $duration $ease-out both;
+}
+
+@mixin scale-in($duration: $duration-base) {
+  animation: scale-in $duration $ease-spring both;
+}

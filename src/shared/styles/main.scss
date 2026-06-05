@@ -4,9 +4,11 @@
 @use "abstracts/functions" as *;
 @use "abstracts/mixins" as *;
 @use "abstracts/breakpoints" as *;
+@use "abstracts/animations" as *;
 
 @use "base/tokens";
 @use "base/reset";
 @use "base/typography";
+@use "base/animations";
 
 @use "layout/grid";

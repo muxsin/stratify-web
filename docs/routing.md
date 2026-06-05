@@ -9,9 +9,7 @@ Never hardcode path strings. Always use `ROUTE_PATHS` from `src/shared/constants
 ```ts
 export const PAGE_NAMES = {
   HOME: "home",
-  LOGIN: "login",
-  REGISTER: "register",
-  DASHBOARD: "dashboard",
+  SWOT: "swot",
 } as const;
 
 export type PageName = (typeof PAGE_NAMES)[keyof typeof PAGE_NAMES];
@@ -24,29 +22,47 @@ export const DOMAIN = "https://stratify.uz";
 
 export const ROUTE_PATHS = {
   [PAGE_NAMES.HOME]: { name: PAGE_NAMES.HOME, path: "/" },
-  [PAGE_NAMES.LOGIN]: { name: PAGE_NAMES.LOGIN, path: "/auth/login" },
-  [PAGE_NAMES.REGISTER]: { name: PAGE_NAMES.REGISTER, path: "/auth/register" },
-  [PAGE_NAMES.DASHBOARD]: { name: PAGE_NAMES.DASHBOARD, path: "/dashboard" },
+  [PAGE_NAMES.SWOT]: { name: PAGE_NAMES.SWOT, path: "/swot" },
 } as const;
 ```
 
-When adding a new route: add to `PAGE_NAMES` first, then add to `ROUTE_PATHS`.
+When adding a new route: add to `PAGE_NAMES` first, then add to `ROUTE_PATHS`. In templates, link with `ROUTE_PATHS.<name>.path` (e.g. `<NuxtLink :href="ROUTE_PATHS.swot.path">`).
 
 ---
 
 ## Rendering Strategy
 
-### Route-level (`nuxt.config.ts`)
+Routes are server-rendered by default. Only add a `routeRules` entry when a route needs
+something other than the default. Current config (`nuxt.config.ts`):
 
 ```ts
 routeRules: {
-  '/':          { ssr: true },   // SEO critical
-  '/dashboard': { ssr: false },  // Private, no SEO
-  '/auth/**':   { ssr: false },  // No SEO needed
+  '/': { ssr: true }, // SEO critical
+}
+```
+
+Example of opting a private/interactive route out of SSR:
+
+```ts
+routeRules: {
+  '/dashboard': { ssr: false }, // private, no SEO
 }
 ```
 
 Add a `routeRules` entry for every new route that needs non-default rendering.
+
+### Page SEO
+
+Set per-page metadata with `useSeoMeta` in the page wrapper (not the view). Site-wide
+defaults (`url`, `name`, `description`, `defaultLocale`) come from the `site` block in
+`nuxt.config.ts`, managed by `@nuxtjs/seo`. See [`pages/index.vue`](../src/pages/index.vue).
+
+```ts
+useSeoMeta({
+  title: "Stratify — Turn complexity into clarity",
+  description: "Learn business strategy frameworks…",
+});
+```
 
 ### Component-level
 

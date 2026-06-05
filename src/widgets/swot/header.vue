@@ -1,6 +1,13 @@
 <template>
   <section class="container py-5 flex items-center justify-between gap-5 flex-wrap md:flex-nowrap">
-    <Input v-model="swotName" class="md:max-w-[50%]" placeholder="Name your swot analysis..." />
+    <div class="flex items-center gap-3 w-full md:max-w-[50%]">
+      <NuxtLink :href="ROUTE_PATHS.home.path">
+        <Button variant="outline" size="icon" aria-label="Back to home">
+          <ArrowLeft class="size-4" />
+        </Button>
+      </NuxtLink>
+      <Input v-model="swotName" class="flex-1" placeholder="Name your swot analysis..." />
+    </div>
 
     <div class="flex items-center gap-3">
       <Button variant="outline" @click="setUploadFileModalOpen">
@@ -21,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { FolderDown, FolderUp } from "@lucide/vue";
+import { ArrowLeft, FolderDown, FolderUp } from "@lucide/vue";
 import Button from "~/shared/components/ui/button/button.vue";
 import Input from "~/shared/components/ui/input/Input.vue";
 import {
@@ -31,6 +38,7 @@ import {
   DropdownMenuTrigger,
 } from "~/shared/components/ui/dropdown-menu";
 import { useQueryParams } from "~/shared/hooks/use-query-params";
+import { ROUTE_PATHS } from "~/shared/constants/route-paths";
 
 defineProps<{ handleExportJson: () => void; setUploadFileModalOpen: (value: boolean) => void }>();
 

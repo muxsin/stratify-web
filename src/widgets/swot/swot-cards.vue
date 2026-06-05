@@ -7,7 +7,7 @@
             <span class="swot-card__dot" aria-hidden="true" />
             <h3 class="swot-card__title">
               <span class="swot-card__letter">{{ card.key }}</span>
-              <span class="swot-card__dash">—</span>
+              <span class="swot-card__dash">-</span>
               <span class="swot-card__name">{{ card.name }}</span>
             </h3>
           </div>
@@ -57,7 +57,7 @@
         </TransitionGroup>
         <div v-else class="swot-card__empty">
           <Plus class="size-4" />
-          <span>No {{ card.name.toLowerCase() }} yet — add one below.</span>
+          <span>No {{ card.name.toLowerCase() }} yet - add one below.</span>
         </div>
 
         <div class="swot-card__footer">

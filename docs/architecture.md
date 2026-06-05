@@ -76,6 +76,7 @@ stratify-web/
 │       ├── utils/                    # Pure utility functions (cn)
 │       ├── types/                    # TypeScript types, grouped per domain (types/swot/)
 │       ├── constants/                # App-wide constants (route-paths, page-names, keys)
+│       ├── mock/                     # Mock data fixtures, grouped per domain (mock/swot/)
 │       ├── styles/                   # Full SCSS architecture
 │       └── assets/
 │

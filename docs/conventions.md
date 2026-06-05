@@ -156,6 +156,7 @@ npx husky
 | Helper / utility function             | `src/shared/utils/`                            |
 | Route constant                        | `src/shared/constants/route-paths.ts`          |
 | localStorage / cookie / session key   | `src/shared/constants/keys.ts`                 |
+| Mock data fixture                     | `src/shared/mock/<domain>/`                    |
 | Global SCSS variable                  | `src/shared/styles/abstracts/_variables.scss`  |
 | Motion token / animation mixin        | `src/shared/styles/abstracts/_animations.scss` |
 | Shared @keyframes / `.animate-*`      | `src/shared/styles/base/_animations.scss`      |

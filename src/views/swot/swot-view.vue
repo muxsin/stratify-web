@@ -12,6 +12,13 @@
       :handleSubmit="handleImportJson"
       :uploadFileError="uploadFileError"
     />
+
+    <UserAnalysisModal
+      :open="isUserAnalysisModalOpen"
+      :setOpen="setUserAnalysisModalOpen"
+      :allLocalStorageAnalysis="allLocalStorageAnalysis"
+      :handleGetSwotLocalStorage="handleGetSwotLocalStorage"
+    />
   </div>
 </template>
 
@@ -19,10 +26,15 @@
 import { reactive, computed, ref, watchEffect, watch } from "vue";
 import { useQueryParams } from "~/shared/hooks/use-query-params";
 import type { SwotCard } from "~/shared/types/swot/swot-cards.types";
-import { getLocalStorage, setLocalStorage } from "~/shared/utils/local-storage";
+import {
+  getAllLocalStorageItems,
+  getLocalStorage,
+  setLocalStorage,
+} from "~/shared/utils/local-storage";
 import SwotHeader from "~/widgets/swot/header.vue";
 import SwotCards from "~/widgets/swot/swot-cards.vue";
 import UploadFileModal from "~/widgets/swot/upload-file-modal.vue";
+import UserAnalysisModal from "~/widgets/swot/user-analysis-modal.vue";
 
 const isUploadFileModalOpen = ref(false);
 const setUploadFileModalOpen = (value: boolean) => {
@@ -31,7 +43,14 @@ const setUploadFileModalOpen = (value: boolean) => {
 const uploadFileError = ref();
 const swotFileName = useQueryParams("name");
 const formattedFileName = computed(() => swotFileName.value.split(" ").join("-"));
-const localStorageCards = getLocalStorage(`swotAA-${formattedFileName.value || "unknown"}`);
+const localStorageCards = computed(() =>
+  getLocalStorage(`swotAA-${formattedFileName.value || "unknown"}`),
+);
+const allLocalStorageAnalysis = getAllLocalStorageItems("swotAA");
+const isUserAnalysisModalOpen = ref(false);
+const setUserAnalysisModalOpen = (value: boolean) => {
+  isUserAnalysisModalOpen.value = value;
+};
 
 const cards = reactive<SwotCard[]>([
   {
@@ -73,9 +92,13 @@ const cards = reactive<SwotCard[]>([
 ]);
 
 watchEffect(() => {
-  if (Array.isArray(localStorageCards)) {
-    cards.splice(0, cards.length, ...localStorageCards);
+  if (allLocalStorageAnalysis?.length > 0) {
+    isUserAnalysisModalOpen.value = true;
   }
+});
+
+watchEffect(() => {
+  handleGetSwotLocalStorage();
 });
 
 watch(
@@ -105,5 +128,12 @@ function handleExportJson() {
 function handleImportJson(jsonFileContent: SwotCard[]) {
   cards.splice(0, cards.length, ...jsonFileContent);
   setUploadFileModalOpen(false);
+}
+
+function handleGetSwotLocalStorage() {
+  console.log("localStorageCards.value:", localStorageCards.value);
+  if (Array.isArray(localStorageCards.value)) {
+    cards.splice(0, cards.length, ...localStorageCards.value);
+  }
 }
 </script>

@@ -32,12 +32,7 @@
           <span class="swot-card__desc">{{ card.description }}</span>
           <Tooltip>
             <TooltipTrigger as-child>
-              <Button
-                type="button"
-                variant="ghost"
-                size="icon-xs"
-                aria-label="More information"
-              >
+              <Button type="button" variant="ghost" size="icon-xs" aria-label="More information">
                 <Info :size="14" />
               </Button>
             </TooltipTrigger>
@@ -47,7 +42,7 @@
           </Tooltip>
         </div>
 
-        <div v-if="card.items.length" class="swot-card__items">
+        <TransitionGroup v-if="card.items.length" tag="div" name="chip" class="swot-card__items">
           <div v-for="(item, i) in card.items" :key="i" class="swot-card__item">
             <span>{{ item }}</span>
             <Button
@@ -59,6 +54,10 @@
               <X class="size-3" />
             </Button>
           </div>
+        </TransitionGroup>
+        <div v-else class="swot-card__empty">
+          <Plus class="size-4" />
+          <span>No {{ card.name.toLowerCase() }} yet — add one below.</span>
         </div>
 
         <div class="swot-card__footer">
@@ -87,7 +86,7 @@
 </template>
 
 <script setup lang="ts">
-import { Info, SendHorizontal, X } from "@lucide/vue";
+import { Info, Plus, SendHorizontal, X } from "@lucide/vue";
 import { Input } from "~/shared/components/ui/input";
 import {
   Tooltip,
@@ -117,10 +116,13 @@ function clearItems(card: SwotCard) {
 </script>
 
 <style lang="scss" scoped>
+@use "~/shared/styles/abstracts/variables" as *;
+@use "~/shared/styles/abstracts/animations" as *;
+
 .swot-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
+  gap: $space-4;
   min-height: 100%;
 
   @media (max-width: 767px) {
@@ -131,120 +133,87 @@ function clearItems(card: SwotCard) {
 .swot-card {
   display: flex;
   flex-direction: column;
-  gap: 0.875rem;
-  padding: 0 1.5rem;
-  border: 1px solid var(--border);
-  border-left-width: 4px;
   min-height: 320px;
   max-height: 550px;
   overflow-y: auto;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--q-accent);
+  border-radius: $radius-xl;
+  box-shadow: $shadow-sm;
+  @include transition-base(box-shadow);
 
-  // Avoid double borders in the grid
-  &:nth-child(1),
-  &:nth-child(2) {
-    border-bottom: none;
-  }
-
-  &:nth-child(odd) {
-    border-right: none;
+  &:hover {
+    box-shadow: $shadow-md;
   }
 
   @media (max-width: 767px) {
     min-height: 260px;
-    border-right: 1px solid var(--border) !important;
-    border-left-width: 4px;
-
-    &:not(:last-child) {
-      border-bottom: none;
-    }
   }
 
-  // Quadrant accent colors
+  // Per-quadrant accent + soft tint, consumed via --q-* tokens below
   &[data-quadrant="S"] {
-    border-left-color: var(--success);
-
-    .swot-card__dot {
-      background-color: var(--success);
-    }
-
-    .swot-card__letter {
-      color: var(--success);
-    }
+    --q-accent: var(--success);
+    --q-soft: var(--success-soft);
   }
 
   &[data-quadrant="W"] {
-    border-left-color: var(--danger);
-
-    .swot-card__dot {
-      background-color: var(--danger);
-    }
-
-    .swot-card__letter {
-      color: var(--danger);
-    }
+    --q-accent: var(--danger);
+    --q-soft: var(--danger-soft);
   }
 
   &[data-quadrant="O"] {
-    border-left-color: var(--accent);
-
-    .swot-card__dot {
-      background-color: var(--accent);
-    }
-
-    .swot-card__letter {
-      color: var(--accent);
-    }
+    --q-accent: var(--accent);
+    --q-soft: var(--accent-muted);
   }
 
   &[data-quadrant="T"] {
-    border-left-color: var(--warning);
-
-    .swot-card__dot {
-      background-color: var(--warning);
-    }
-
-    .swot-card__letter {
-      color: var(--warning);
-    }
+    --q-accent: var(--warning);
+    --q-soft: var(--warning-soft);
   }
 
-  // Header row
+  // Header band
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.5rem;
+    gap: $space-2;
     position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--bg-base);
-    padding: 0.5rem 0;
+    z-index: $z-raised;
+    padding: $space-3 $space-5;
+    background-color: var(--q-soft);
+    border-bottom: 1px solid var(--border);
   }
 
   &__title-row {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: $space-2;
   }
 
   &__dot {
     width: 8px;
     height: 8px;
-    border-radius: 50%;
+    border-radius: $radius-full;
+    background-color: var(--q-accent);
     flex-shrink: 0;
   }
 
   &__title {
     display: flex;
     align-items: center;
-    gap: 0.375rem;
+    gap: $space-1;
     margin: 0;
-    font-size: 0.75rem;
-    font-weight: 700;
+    font-size: $text-xs;
+    font-weight: $font-bold;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     line-height: 1;
+  }
+
+  &__letter {
+    color: var(--q-accent);
   }
 
   &__dash,
@@ -255,69 +224,87 @@ function clearItems(card: SwotCard) {
   &__header-right {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: $space-2;
     flex-shrink: 0;
   }
 
   &__count {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--text-hint);
+    min-width: 1.5rem;
+    padding: $space-1 $space-2;
+    font-size: $text-xs;
+    font-weight: $font-semibold;
+    text-align: center;
+    color: var(--text-muted);
+    background-color: var(--bg-base);
+    border-radius: $radius-full;
   }
 
   // Description + info icon
   &__desc-row {
     display: flex;
     align-items: center;
-    gap: 0.375rem;
+    gap: $space-1;
+    padding: $space-3 $space-5 $space-2;
   }
 
   &__desc {
-    font-size: 0.8125rem;
+    font-size: $text-sm;
     color: var(--text-muted);
-    line-height: 1.4;
+    line-height: $leading-snug;
   }
 
   // Items list
   &__items {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.375rem;
+    gap: $space-2;
     flex: 1;
     align-content: flex-start;
+    padding: 0 $space-5 $space-3;
   }
 
   &__item {
     display: inline-flex;
     align-items: center;
-    gap: 0.375rem;
+    gap: $space-1;
     width: fit-content;
-    padding: 0.3rem 0.5rem 0.3rem 0.75rem;
-    font-size: 0.8125rem;
-    line-height: 1.5;
+    padding: $space-1 $space-1 $space-1 $space-3;
+    font-size: $text-sm;
+    line-height: $leading-normal;
     color: var(--text-secondary);
-    background-color: var(--bg-elevated);
+    background-color: var(--q-soft);
     border: 1px solid var(--border-strong);
-    border-radius: 0.5rem;
+    border-radius: $radius-lg;
     word-break: break-word;
-    transition:
-      background-color 0.15s ease,
-      border-color 0.15s ease;
+    @include transition-base(background-color, border-color);
 
     &:hover {
-      background-color: var(--bg-surface);
+      border-color: var(--q-accent);
     }
+  }
+
+  // Empty state
+  &__empty {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $space-2;
+    padding: $space-4 $space-5;
+    color: var(--text-hint);
+    text-align: center;
+    font-size: $text-sm;
   }
 
   // Footer input area
   &__footer {
     margin-top: auto;
-    padding: 0.5rem 0;
+    padding: $space-3 $space-5;
     border-top: 1px solid var(--border);
     position: sticky;
     bottom: 0;
-    left: 0;
-    right: 0;
+    z-index: $z-raised;
     background-color: var(--bg-base);
   }
 
@@ -325,6 +312,12 @@ function clearItems(card: SwotCard) {
     position: relative;
     display: flex;
     align-items: center;
+    border-radius: $radius-lg;
+    @include transition-base(box-shadow);
+
+    &:focus-within {
+      box-shadow: 0 0 0 2px var(--accent-soft);
+    }
   }
 
   &__input {
@@ -333,21 +326,19 @@ function clearItems(card: SwotCard) {
 
   &__send-btn {
     position: absolute;
-    right: 0.5rem;
+    right: $space-2;
     top: 50%;
     transform: translateY(-50%);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.25rem;
+    padding: $space-1;
     background: none;
     border: none;
     cursor: pointer;
     color: var(--accent);
-    border-radius: 0.25rem;
-    transition:
-      color 0.15s ease,
-      background-color 0.15s ease;
+    border-radius: $radius-sm;
+    @include transition-base(color, background-color);
 
     &:hover {
       color: var(--accent-hover);
@@ -358,7 +349,21 @@ function clearItems(card: SwotCard) {
   &__tooltip {
     max-width: 240px;
     white-space: normal;
-    line-height: 1.5;
+    line-height: $leading-normal;
   }
+}
+
+// Item enter/leave motion — TransitionGroup name="chip"
+.chip-enter-active,
+.chip-leave-active {
+  transition:
+    opacity $duration-base $ease-out,
+    transform $duration-base $ease-out;
+}
+
+.chip-enter-from,
+.chip-leave-to {
+  opacity: 0;
+  transform: translateY(0.4rem) scale(0.96);
 }
 </style>

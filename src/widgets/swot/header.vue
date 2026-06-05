@@ -3,13 +3,13 @@
     <Input v-model="swotName" class="md:max-w-[50%]" placeholder="Name your swot analysis..." />
 
     <div class="flex items-center gap-3">
-      <Button variant="ghost" @click="setUploadFileModalOpen">
+      <Button variant="outline" @click="setUploadFileModalOpen">
         <FolderDown class="size-4" /> Import</Button
       >
 
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <Button variant="ghost"> <FolderUp class="size-4" /> Export</Button>
+          <Button variant="outline"> <FolderUp class="size-4" /> Export</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>as image</DropdownMenuItem>

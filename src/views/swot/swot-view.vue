@@ -16,9 +16,10 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, computed, ref } from "vue";
+import { reactive, computed, ref, watchEffect, watch } from "vue";
 import { useQueryParams } from "~/shared/hooks/use-query-params";
 import type { SwotCard } from "~/shared/types/swot/swot-cards.types";
+import { getLocalStorage, setLocalStorage } from "~/shared/utils/local-storage";
 import SwotHeader from "~/widgets/swot/header.vue";
 import SwotCards from "~/widgets/swot/swot-cards.vue";
 import UploadFileModal from "~/widgets/swot/upload-file-modal.vue";
@@ -28,6 +29,9 @@ const setUploadFileModalOpen = (value: boolean) => {
   isUploadFileModalOpen.value = value;
 };
 const uploadFileError = ref();
+const swotFileName = useQueryParams("name");
+const formattedFileName = computed(() => swotFileName.value.split(" ").join("-"));
+const localStorageCards = getLocalStorage(`swotAA-${formattedFileName.value || "unknown"}`);
 
 const cards = reactive<SwotCard[]>([
   {
@@ -68,8 +72,21 @@ const cards = reactive<SwotCard[]>([
   },
 ]);
 
-const swotFileName = useQueryParams("name");
-const formattedFileName = computed(() => swotFileName.value.split(" ").join("-"));
+watchEffect(() => {
+  if (Array.isArray(localStorageCards)) {
+    cards.splice(0, cards.length, ...localStorageCards);
+  }
+});
+
+watch(
+  () => cards?.map((card) => card?.items),
+  () => {
+    setLocalStorage(`swotAA-${formattedFileName.value || "unknown"}`, JSON.stringify(cards));
+  },
+  {
+    deep: true,
+  },
+);
 
 function handleExportJson() {
   const carsAsString = JSON.stringify(cards, null, 2);

@@ -37,7 +37,8 @@ something other than the default. Current config (`nuxt.config.ts`):
 
 ```ts
 routeRules: {
-  '/': { ssr: true }, // SEO critical
+  '/': { ssr: true },     // SEO critical
+  '/swot': { ssr: false }, // interactive tool, no public SEO need
 }
 ```
 

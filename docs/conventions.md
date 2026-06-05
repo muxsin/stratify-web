@@ -57,6 +57,23 @@ export const STORAGE_KEY = "stratify-theme";
 
 Same pattern as `ROUTE_PATHS` for routes. When adding a new storage key, add it here first, then import it where needed.
 
+For **dynamic keys** (where a runtime value such as a query-param slug is appended), store the base prefix as a constant and compose the full key at usage:
+
+```ts
+// src/shared/constants/keys.ts
+export const SWOT_CARDS_KEY = "swot-cards"; // prefix only
+```
+
+```ts
+// usage
+import { SWOT_CARDS_KEY } from "~/shared/constants/keys";
+const key = `${SWOT_CARDS_KEY}-${slug || "unknown"}`;
+```
+
+Never inline the base string — always import the prefix constant from `keys.ts`.
+
+For reading/writing localStorage, use the helpers in `src/shared/utils/local-storage.ts` (`getLocalStorage`, `setLocalStorage`) — never call `localStorage` directly. They handle JSON serialization consistently.
+
 ---
 
 ## Commit Messages

@@ -16,7 +16,7 @@
               {{ card.items.length }}
             </span>
             <Button
-              v-if="card.items.length"
+              v-if="card.items.length && !isReadonly"
               type="button"
               variant="ghost"
               size="sm"
@@ -46,6 +46,7 @@
           <div v-for="(item, i) in card.items" :key="i" class="swot-card__item">
             <span>{{ item }}</span>
             <Button
+              v-if="!isReadonly"
               size="icon-xs"
               variant="ghost"
               :aria-label="`Remove ${item}`"
@@ -56,11 +57,12 @@
           </div>
         </TransitionGroup>
         <div v-else class="swot-card__empty">
-          <Plus class="size-4" />
-          <span>No {{ card.name.toLowerCase() }} yet - add one below.</span>
+          <Plus v-if="!isReadonly" class="size-4" />
+          <span v-if="isReadonly">No {{ card.name.toLowerCase() }} yet.</span>
+          <span v-else>No {{ card.name.toLowerCase() }} yet - add one below.</span>
         </div>
 
-        <div class="swot-card__footer">
+        <div v-if="!isReadonly" class="swot-card__footer">
           <div class="swot-card__input-wrapper">
             <Input
               v-model="card.input"
@@ -97,7 +99,7 @@ import {
 import Button from "~/shared/components/ui/button/button.vue";
 import type { SwotCard } from "~/shared/types/swot/swot-cards.types";
 
-defineProps<{ cards: SwotCard[] }>();
+defineProps<{ cards: SwotCard[]; isReadonly?: boolean }>();
 
 function submitItem(card: SwotCard) {
   const trimmed = card.input.trim();

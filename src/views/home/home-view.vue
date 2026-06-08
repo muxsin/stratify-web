@@ -1,7 +1,7 @@
 <template>
   <div class="home-view">
     <LandingHero />
-    <DemoSwots />
+    <ExampleSwots />
   </div>
 </template>
 

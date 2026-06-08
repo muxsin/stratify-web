@@ -1,5 +1,7 @@
 <template>
-  <div>docs view</div>
+  <DocsIntro />
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import DocsIntro from "~/widgets/docs/intro.vue";
+</script>

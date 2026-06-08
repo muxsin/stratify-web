@@ -1,24 +1,24 @@
 <template>
   <div>
     <SwotHeader
-      :handleExportJson="handleExportJson"
-      :setUploadFileModalOpen="setUploadFileModalOpen"
-      :setUserSwotAnalysisModalOpen="setUserSwotAnalysisModalOpen"
+      :handle-export-json="handleExportJson"
+      :set-upload-file-modal-open="setUploadFileModalOpen"
+      :set-user-swot-analysis-modal-open="setUserSwotAnalysisModalOpen"
     />
     <SwotCards :cards="cards" />
 
     <UploadFileModal
       :open="isUploadFileModalOpen"
-      :setOpen="setUploadFileModalOpen"
-      :handleSubmit="handleImportJson"
-      :uploadFileError="uploadFileError"
+      :set-open="setUploadFileModalOpen"
+      :handle-submit="handleImportJson"
+      :upload-file-error="uploadFileError"
     />
 
     <UserSwotAnalysisModal
       :open="isUserSwotAnalysisModalOpen"
-      :setOpen="setUserSwotAnalysisModalOpen"
-      :allLocalStorageAnalysis="allLocalStorageAnalysis"
-      :handleGetSwotLocalStorage="handleGetSwotLocalStorage"
+      :set-open="setUserSwotAnalysisModalOpen"
+      :all-local-storage-analysis="allLocalStorageAnalysis"
+      :handle-get-swot-local-storage="handleGetSwotLocalStorage"
     />
   </div>
 </template>

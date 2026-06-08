@@ -1,10 +1,10 @@
 <template>
   <div class="docs-page">
     <div class="layout">
+      <DocsSidebar />
       <main>
         <slot />
       </main>
-      <DocsSidebar />
     </div>
     <SiteFooter />
   </div>
@@ -25,5 +25,8 @@ import SiteFooter from "~/widgets/layout/footer/site-footer.vue";
   display: flex;
   align-items: start;
   gap: 20px;
+  max-width: 1600px;
+  margin: auto;
+  padding: 16px;
 }
 </style>

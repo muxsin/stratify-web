@@ -17,15 +17,15 @@ import SiteFooter from "~/widgets/layout/footer/site-footer.vue";
 
 <style lang="scss" scoped>
 .docs-page {
-  min-height: 100vh;
   background-color: var(--bg-base);
 }
 
 .layout {
+  min-height: 100vh;
   display: flex;
   align-items: start;
   gap: 20px;
-  max-width: 1600px;
+  max-width: 1720px;
   margin: auto;
   padding: 16px;
 }

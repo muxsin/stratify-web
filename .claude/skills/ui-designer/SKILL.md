@@ -17,6 +17,7 @@ Build and update Stratify UI that matches the design system and architecture. St
 6. **Don't change functionality.** Touch only the UI you were asked to change. If a fix requires changing behaviour, or you hit an error in existing code, **stop and give the user a short plan**, then wait for approval.
 7. **Scope** — only edit the place you were asked about. If something else clearly needs updating, ask first.
 8. **Images** — if an image is needed but none is provided, use `StratifyLogo` in its place and add `<!-- todo: update image -->`.
+9. **Long dashes** - don't use — kind of long dashes, use - instead of this. this (—) shows so long on UI so use -
 
 ## Styling
 

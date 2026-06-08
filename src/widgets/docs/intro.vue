@@ -5,7 +5,7 @@
       <p class="docs-intro__lead">
         Stratify is a clean toolkit for learning and applying business strategy frameworks. It
         brings together explanations, real-world examples, and interactive tools in one focused
-        place — so you can understand a framework and put it to work without switching between tabs.
+        place - so you can understand a framework and put it to work without switching between tabs.
       </p>
     </header>
 
@@ -14,7 +14,7 @@
       <p class="docs-intro__text">
         Right now, Stratify covers
         <NuxtLink :href="ROUTE_PATHS.swot.path" class="docs-intro__link">SWOT Analysis</NuxtLink>
-        — a simple but powerful framework for evaluating Strengths, Weaknesses, Opportunities, and
+        - a simple but powerful framework for evaluating Strengths, Weaknesses, Opportunities, and
         Threats. You can read through the guide, explore real examples, and use the interactive tool
         to build your own analysis.
       </p>
@@ -38,7 +38,6 @@ import { ROUTE_PATHS } from "~/shared/constants/route-paths";
 @use "~/shared/styles/abstracts/breakpoints" as *;
 
 .docs-intro {
-  max-width: 720px;
   padding: $space-6 0;
 
   &__header {

@@ -32,25 +32,26 @@ When adding a new route: add to `PAGE_NAMES` first, then add to `ROUTE_PATHS`. I
 
 ## Rendering Strategy
 
-Routes are server-rendered by default. Only add a `routeRules` entry when a route needs
-something other than the default. Current config (`nuxt.config.ts`):
+**All routes are prerendered.** The entire site is built to static HTML at deploy time via a single catch-all rule in `nuxt.config.ts`:
 
 ```ts
 routeRules: {
-  '/': { ssr: true },     // SEO critical
-  '/swot': { ssr: false }, // interactive tool, no public SEO need
+  "/**": { prerender: true }, // entire site — built at deploy time
 }
 ```
 
-Example of opting a private/interactive route out of SSR:
+This means every page is generated once at build and served as static HTML — no server-side rendering per request. This is appropriate because all current content (tools, docs, landing) is user-agnostic and benefits from instant delivery.
+
+**Consequence for new routes:** new pages are automatically prerendered with no extra config needed. If a future route requires per-request server rendering (e.g. personalised or auth-gated content), override it explicitly:
 
 ```ts
 routeRules: {
-  '/dashboard': { ssr: false }, // private, no SEO
+  "/**": { prerender: true },
+  "/dashboard": { ssr: true }, // override for dynamic per-user content
 }
 ```
 
-Add a `routeRules` entry for every new route that needs non-default rendering.
+Use `<ClientOnly>` for any component that depends on browser APIs (localStorage, window) — they cannot run during prerender.
 
 ### Page SEO
 
@@ -65,12 +66,3 @@ useSeoMeta({
 });
 ```
 
-### Component-level
-
-```vue
-<ClientOnly>
-  <HeavyInteractiveWidget />
-</ClientOnly>
-```
-
-Use `<ClientOnly>` for components that depend on browser APIs (localStorage, window, etc.) and cannot run on the server.

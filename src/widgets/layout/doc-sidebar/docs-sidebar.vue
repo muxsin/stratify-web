@@ -96,14 +96,18 @@ import { DOCS_SIDEBAR_ITEMS } from "~/shared/constants/docs/sidebar-items";
   }
 
   &__section-label {
-    display: block;
-    padding: $space-1 $space-3;
+    display: inline-flex;
+    align-items: center;
+    padding: $space-1 $space-2;
+    margin: 0 $space-1 $space-2;
     font-size: $text-xs;
     font-weight: $font-semibold;
-    color: var(--text-muted);
+    color: var(--accent);
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: $space-1;
+    letter-spacing: 0.08em;
+    background-color: var(--accent-muted);
+    border-radius: $radius-sm;
+    border-left: 2px solid var(--accent);
   }
 
   &__sublist {

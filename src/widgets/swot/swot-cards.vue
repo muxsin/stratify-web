@@ -1,7 +1,7 @@
 <template>
   <TooltipProvider>
     <section class="swot-grid max-w-450 mx-auto w-full p-3">
-      <div v-for="card in cards" :key="card.key" class="swot-card" :data-quadrant="card.key">
+      <div v-for="card in cards" :key="card.key" class="swot-card" :data-quadrant="card.key" @click="handleCardClick(card, $event)">
         <div class="swot-card__header">
           <div class="swot-card__title-row">
             <span class="swot-card__dot" aria-hidden="true" />
@@ -99,7 +99,7 @@ import {
 import Button from "~/shared/components/ui/button/button.vue";
 import type { SwotCard } from "~/shared/types/swot/swot-cards.types";
 
-defineProps<{ cards: SwotCard[]; isReadonly?: boolean }>();
+const props = defineProps<{ cards: SwotCard[]; isReadonly?: boolean }>();
 
 function submitItem(card: SwotCard) {
   const trimmed = card.input.trim();
@@ -114,6 +114,14 @@ function removeItem(card: SwotCard, index: number) {
 
 function clearItems(card: SwotCard) {
   card.items = [];
+}
+
+function handleCardClick(_card: SwotCard, event: MouseEvent) {
+  if (props.isReadonly) return;
+  const target = event.target as HTMLElement;
+  if (target.closest("button") || target.closest("input")) return;
+  const input = (event.currentTarget as HTMLElement).querySelector("input");
+  input?.focus();
 }
 </script>
 
@@ -138,6 +146,7 @@ function clearItems(card: SwotCard) {
   min-height: 320px;
   max-height: 550px;
   overflow-y: auto;
+  cursor: text;
   background-color: var(--bg-base);
   border: 1px solid var(--border);
   border-left: 4px solid var(--q-accent);

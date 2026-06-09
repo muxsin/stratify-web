@@ -1,5 +1,6 @@
 <template>
   <div class="docs-page">
+    <SiteHeader />
     <div class="layout">
       <DocsSidebar />
       <main>

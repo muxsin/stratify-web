@@ -4,8 +4,15 @@
       <StratifyLogo size="md" />
 
       <nav class="site-header__nav" aria-label="Primary">
-        <NuxtLink :href="ROUTE_PATHS.home.path">{{ ROUTE_PATHS.home.name }}</NuxtLink>
-        <NuxtLink :href="ROUTE_PATHS.swot.path">{{ ROUTE_PATHS.swot.name }}</NuxtLink>
+        <NuxtLink :href="ROUTE_PATHS.home.path" exact-active-class="site-header__nav-link--active"
+          >Home</NuxtLink
+        >
+        <NuxtLink :href="ROUTE_PATHS.swot.path" active-class="site-header__nav-link--active"
+          >SWOT</NuxtLink
+        >
+        <NuxtLink :href="ROUTE_PATHS.docs.path" active-class="site-header__nav-link--active"
+          >Docs</NuxtLink
+        >
       </nav>
 
       <div class="site-header__actions">#@</div>
@@ -53,6 +60,11 @@ import { ROUTE_PATHS } from "~/shared/constants/route-paths";
 
       &:hover {
         color: var(--text-primary);
+      }
+
+      &.site-header__nav-link--active {
+        color: var(--accent);
+        font-weight: $font-medium;
       }
     }
   }

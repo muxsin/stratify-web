@@ -32,9 +32,18 @@ export const ROUTE_PATHS = {
   [PAGE_NAMES.DOCS]: { name: PAGE_NAMES.DOCS, path: "/docs" },
   [PAGE_NAMES.DOCS_SWOT]: { name: PAGE_NAMES.DOCS_SWOT, path: "/docs/swot" },
   [PAGE_NAMES.DOCS_SWOT_BASICS]: { name: PAGE_NAMES.DOCS_SWOT_BASICS, path: "/docs/swot/basics" },
-  [PAGE_NAMES.DOCS_SWOT_HOW_TO]: { name: PAGE_NAMES.DOCS_SWOT_HOW_TO, path: "/docs/swot/how-to-use" },
-  [PAGE_NAMES.DOCS_SWOT_BEST_PRACTICES]: { name: PAGE_NAMES.DOCS_SWOT_BEST_PRACTICES, path: "/docs/swot/best-practices" },
-  [PAGE_NAMES.DOCS_SWOT_EXAMPLES]: { name: PAGE_NAMES.DOCS_SWOT_EXAMPLES, path: "/docs/swot/examples" },
+  [PAGE_NAMES.DOCS_SWOT_HOW_TO]: {
+    name: PAGE_NAMES.DOCS_SWOT_HOW_TO,
+    path: "/docs/swot/how-to-use",
+  },
+  [PAGE_NAMES.DOCS_SWOT_BEST_PRACTICES]: {
+    name: PAGE_NAMES.DOCS_SWOT_BEST_PRACTICES,
+    path: "/docs/swot/best-practices",
+  },
+  [PAGE_NAMES.DOCS_SWOT_EXAMPLES]: {
+    name: PAGE_NAMES.DOCS_SWOT_EXAMPLES,
+    path: "/docs/swot/examples",
+  },
 } as const;
 ```
 
@@ -77,4 +86,3 @@ useSeoMeta({
   description: "Learn business strategy frameworks…",
 });
 ```
-

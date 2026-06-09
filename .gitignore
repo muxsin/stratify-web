@@ -24,7 +24,7 @@ node_modules
 # Logs
 *.log
 npm-debug.log*
-ideas.md
+task-ideas.md
 
 # Local Claude settings
 .claude/settings.local.json

@@ -80,6 +80,8 @@ stratify-web/
 │       ├── styles/                   # Full SCSS architecture
 │       └── assets/
 │
+├── src/
+│   └── error.vue                     # Nuxt error boundary — sits at src/ root, outside FSD layers
 ├── public/
 ├── docs/
 ├── nuxt.config.ts
@@ -88,6 +90,18 @@ stratify-web/
 
 > `shared/composables/` is auto-imported (see `imports.dirs` in `nuxt.config.ts`); `shared/hooks/`
 > is **not** — import its helpers explicitly, e.g. `import { useQueryParams } from "~/shared/hooks/use-query-params"`.
+
+---
+
+## Nuxt Root Conventions
+
+Some files live at `src/` root and are **outside the FSD layer graph** — they are Nuxt framework contracts, not application code:
+
+| File            | Purpose                                                                                                             |
+| --------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `src/error.vue` | Global error boundary. Rendered by Nuxt for all unhandled errors (404, 500, …). Uses `NuxtLayout` and `clearError`. |
+
+These files may import from `shared/` but nothing should import them.
 
 ---
 

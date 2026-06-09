@@ -48,7 +48,7 @@ import { DOCS_SIDEBAR_ITEMS } from "~/shared/constants/docs/sidebar-items";
   max-height: calc(100vh - #{$space-8});
   overflow-y: auto;
   padding: $space-4;
-//   background-color: var(--bg-surface);
+  //   background-color: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: $radius-lg;
 

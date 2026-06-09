@@ -140,27 +140,27 @@ npx husky
 
 ## What Goes Where
 
-| Need to add...                        | Goes in...                                     |
-| ------------------------------------- | ---------------------------------------------- |
-| New page / route                      | `src/pages/`                                   |
-| Page layout composition               | `src/views/`                                   |
-| Header, footer, nav                   | `src/widgets/layout/`                          |
-| Interactive section with state        | `src/widgets/`                                 |
-| Logic used by multiple widgets        | `src/features/`                                |
-| TypeScript entity type                | `src/entities/<name>/types/`                   |
-| Domain type used across the app       | `src/shared/types/<domain>/`                   |
-| shadcn-vue component                  | `src/shared/components/ui/`                    |
-| Custom reusable component             | `src/shared/components/custom/`                |
-| Auto-imported reactive composable     | `src/shared/composables/`                      |
-| Reusable logic hook (explicit import) | `src/shared/hooks/`                            |
-| Helper / utility function             | `src/shared/utils/`                            |
-| Route constant                        | `src/shared/constants/route-paths.ts`          |
-| localStorage / cookie / session key   | `src/shared/constants/keys.ts`                 |
-| Domain content list (nav items, card data, static lists) | `src/shared/constants/<domain>/` |
-| Mock data fixture                     | `src/shared/mock/<domain>/`                    |
-| Global SCSS variable                  | `src/shared/styles/abstracts/_variables.scss`  |
-| Motion token / animation mixin        | `src/shared/styles/abstracts/_animations.scss` |
-| Shared @keyframes / `.animate-*`      | `src/shared/styles/base/_animations.scss`      |
-| New CSS design token                  | `src/shared/styles/base/_tokens.scss`          |
-| Nuxt layout                           | `src/app/layouts/`                             |
-| Route middleware                      | `src/app/middleware/`                          |
+| Need to add...                                           | Goes in...                                     |
+| -------------------------------------------------------- | ---------------------------------------------- |
+| New page / route                                         | `src/pages/`                                   |
+| Page layout composition                                  | `src/views/`                                   |
+| Header, footer, nav                                      | `src/widgets/layout/`                          |
+| Interactive section with state                           | `src/widgets/`                                 |
+| Logic used by multiple widgets                           | `src/features/`                                |
+| TypeScript entity type                                   | `src/entities/<name>/types/`                   |
+| Domain type used across the app                          | `src/shared/types/<domain>/`                   |
+| shadcn-vue component                                     | `src/shared/components/ui/`                    |
+| Custom reusable component                                | `src/shared/components/custom/`                |
+| Auto-imported reactive composable                        | `src/shared/composables/`                      |
+| Reusable logic hook (explicit import)                    | `src/shared/hooks/`                            |
+| Helper / utility function                                | `src/shared/utils/`                            |
+| Route constant                                           | `src/shared/constants/route-paths.ts`          |
+| localStorage / cookie / session key                      | `src/shared/constants/keys.ts`                 |
+| Domain content list (nav items, card data, static lists) | `src/shared/constants/<domain>/`               |
+| Mock data fixture                                        | `src/shared/mock/<domain>/`                    |
+| Global SCSS variable                                     | `src/shared/styles/abstracts/_variables.scss`  |
+| Motion token / animation mixin                           | `src/shared/styles/abstracts/_animations.scss` |
+| Shared @keyframes / `.animate-*`                         | `src/shared/styles/base/_animations.scss`      |
+| New CSS design token                                     | `src/shared/styles/base/_tokens.scss`          |
+| Nuxt layout                                              | `src/app/layouts/`                             |
+| Route middleware                                         | `src/app/middleware/`                          |

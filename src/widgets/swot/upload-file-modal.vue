@@ -12,7 +12,10 @@
       </DialogHeader>
 
       <form class="import-modal__form" @submit.prevent="handleFormSubmit">
-        <label class="import-modal__drop-zone" :class="{ 'import-modal__drop-zone--selected': selectedFile }">
+        <label
+          class="import-modal__drop-zone"
+          :class="{ 'import-modal__drop-zone--selected': selectedFile }"
+        >
           <input
             ref="uploadedFile"
             type="file"

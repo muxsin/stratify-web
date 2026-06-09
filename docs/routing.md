@@ -15,6 +15,7 @@ export const PAGE_NAMES = {
   DOCS_SWOT_BASICS: "docs-swot-basics",
   DOCS_SWOT_HOW_TO: "docs-swot-how-to",
   DOCS_SWOT_BEST_PRACTICES: "docs-swot-best-practices",
+  DOCS_SWOT_EXAMPLES: "docs-swot-examples",
 } as const;
 
 export type PageName = (typeof PAGE_NAMES)[keyof typeof PAGE_NAMES];
@@ -33,6 +34,7 @@ export const ROUTE_PATHS = {
   [PAGE_NAMES.DOCS_SWOT_BASICS]: { name: PAGE_NAMES.DOCS_SWOT_BASICS, path: "/docs/swot/basics" },
   [PAGE_NAMES.DOCS_SWOT_HOW_TO]: { name: PAGE_NAMES.DOCS_SWOT_HOW_TO, path: "/docs/swot/how-to-use" },
   [PAGE_NAMES.DOCS_SWOT_BEST_PRACTICES]: { name: PAGE_NAMES.DOCS_SWOT_BEST_PRACTICES, path: "/docs/swot/best-practices" },
+  [PAGE_NAMES.DOCS_SWOT_EXAMPLES]: { name: PAGE_NAMES.DOCS_SWOT_EXAMPLES, path: "/docs/swot/examples" },
 } as const;
 ```
 

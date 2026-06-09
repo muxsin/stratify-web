@@ -35,7 +35,7 @@ new code lands in a predictable place.
 stratify-web/
 ├── src/
 │   ├── app/                          # App-level setup
-│   │   ├── layouts/                  # Nuxt layouts (default.vue)
+│   │   ├── layouts/                  # Nuxt layouts (default.vue, docs.vue)
 │   │   ├── middleware/               # Route guards, redirects (reserved)
 │   │   └── plugins/                  # Third-party inits (reserved)
 │   │
@@ -108,7 +108,7 @@ import SwotView from "~/views/swot/swot-view.vue";
 </script>
 ```
 
-Page-level SEO (`useSeoMeta`) and `definePageMeta` also belong here — see [`pages/index.vue`](../src/pages/index.vue).
+Page-level SEO (`useSeoMeta`) and `definePageMeta` also belong here — see [`pages/index.vue`](../src/pages/index.vue). Use `definePageMeta({ layout: "docs" })` to switch to the docs layout for documentation pages.
 
 ### `views/` — Page Compositions
 

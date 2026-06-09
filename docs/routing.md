@@ -10,6 +10,8 @@ Never hardcode path strings. Always use `ROUTE_PATHS` from `src/shared/constants
 export const PAGE_NAMES = {
   HOME: "home",
   SWOT: "swot",
+  DOCS: "docs",
+  DOCS_SWOT: "docs-swot",
 } as const;
 
 export type PageName = (typeof PAGE_NAMES)[keyof typeof PAGE_NAMES];
@@ -23,6 +25,8 @@ export const DOMAIN = "https://stratify.uz";
 export const ROUTE_PATHS = {
   [PAGE_NAMES.HOME]: { name: PAGE_NAMES.HOME, path: "/" },
   [PAGE_NAMES.SWOT]: { name: PAGE_NAMES.SWOT, path: "/swot" },
+  [PAGE_NAMES.DOCS]: { name: PAGE_NAMES.DOCS, path: "/docs" },
+  [PAGE_NAMES.DOCS_SWOT]: { name: PAGE_NAMES.DOCS_SWOT, path: "/docs/swot" },
 } as const;
 ```
 

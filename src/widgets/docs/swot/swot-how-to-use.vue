@@ -125,9 +125,12 @@
         <NuxtLink :href="ROUTE_PATHS['docs-swot-basics'].path" class="swot-how-to__link">
           Basics
         </NuxtLink>
-        page explains what belongs in each quadrant if you are unsure. When you feel ready, open the
-        <NuxtLink :href="ROUTE_PATHS.swot.path" class="swot-how-to__link"> SWOT tool </NuxtLink>
-        and start your first real analysis.
+        page explains what belongs in each quadrant if you are unsure. When you are ready to level
+        up, the
+        <NuxtLink :href="ROUTE_PATHS['docs-swot-best-practices'].path" class="swot-how-to__link">
+          Best Practices
+        </NuxtLink>
+        page covers tips for getting real value from your analysis.
       </p>
     </section>
   </article>

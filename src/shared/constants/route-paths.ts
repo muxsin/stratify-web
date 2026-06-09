@@ -12,4 +12,8 @@ export const ROUTE_PATHS = {
     name: PAGE_NAMES.DOCS_SWOT_HOW_TO,
     path: "/docs/swot/how-to-use",
   },
+  [PAGE_NAMES.DOCS_SWOT_BEST_PRACTICES]: {
+    name: PAGE_NAMES.DOCS_SWOT_BEST_PRACTICES,
+    path: "/docs/swot/best-practices",
+  },
 } as const;
